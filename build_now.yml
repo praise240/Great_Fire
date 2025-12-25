@@ -1,0 +1,16 @@
+name: Build-My-App
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        uses: Luka-H0/buildozer-action@v0
+        with:
+          command: buildozer android debug
+      - name: Save APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-final-app
+          path: bin/*.apk
